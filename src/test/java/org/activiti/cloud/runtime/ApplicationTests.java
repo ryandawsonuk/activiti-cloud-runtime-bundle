@@ -3,6 +3,7 @@ package org.activiti.cloud.runtime;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -12,11 +13,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DirtiesContext
 public class ApplicationTests {
 
+	@Value("${spring.activiti.process-definition-location-prefix}")
+	private String procPath;
+
+	//for test purposes the env variable PROCESSESPATH is as set in pom.xml using surefire
 	@Test
 	public void contextLoads() throws Exception {
-		//check variable has been resolved for path to processes (actually startup would fail if it hadn't but nice to illustrate)
-		Assert.assertNotNull(System.getenv("PROCESSESPATH"));
-		Assert.assertNotEquals(System.getenv("PROCESSESPATH"),"${PROCESSESPATH}");
+		//check variable has been resolved for path to processes
+		//first check it's not the default
+		Assert.assertNotEquals(procPath,"file:/processes/");
+		Assert.assertEquals(procPath,("file:"+System.getenv("PROCESSESPATH")));
 	}
 
 }

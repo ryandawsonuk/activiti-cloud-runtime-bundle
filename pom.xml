@@ -180,6 +180,7 @@
         <groupId>org.commonjava.maven.plugins</groupId>
         <artifactId>directory-maven-plugin</artifactId>
       </plugin>
+
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -192,7 +193,7 @@
           </excludes>
           <runOrder>alphabetical</runOrder>
           <environmentVariables>
-            <PROCESSESPATH>file:${main.basedir}/processes/</PROCESSESPATH>
+            <PROCESSESPATH>${main.basedir}/processes/</PROCESSESPATH>
           </environmentVariables>
         </configuration>
       </plugin>
