@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @DirtiesContext
-public class ApplicationTests {
+public class ApplicationTest {
 
 	@Value("${spring.activiti.process-definition-location-prefix}")
 	private String procPath;
