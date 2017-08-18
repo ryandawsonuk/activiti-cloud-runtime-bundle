@@ -120,11 +120,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.commonjava.maven.plugins</groupId>
-        <artifactId>directory-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -136,7 +131,7 @@
           </excludes>
           <runOrder>alphabetical</runOrder>
           <environmentVariables>
-            <ACT_RB_PROCESSES_PATH>${main.basedir}/src/test/resources/processes/</ACT_RB_PROCESSES_PATH>
+            <ACT_RB_PROCESSES_PATH>${project.basedir}/src/test/resources/processes/</ACT_RB_PROCESSES_PATH>
           </environmentVariables>
         </configuration>
       </plugin>
