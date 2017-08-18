@@ -193,7 +193,7 @@
           </excludes>
           <runOrder>alphabetical</runOrder>
           <environmentVariables>
-            <PROCESSESPATH>${main.basedir}/processes/</PROCESSESPATH>
+            <ACT_RB_PROCESSES_PATH>${main.basedir}/src/test/resources/processes/</ACT_RB_PROCESSES_PATH>
           </environmentVariables>
         </configuration>
       </plugin>
