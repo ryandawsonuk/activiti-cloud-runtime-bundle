@@ -16,13 +16,13 @@ public class ApplicationTests {
 	@Value("${spring.activiti.process-definition-location-prefix}")
 	private String procPath;
 
-	//for test purposes the env variable PROCESSESPATH is as set in pom.xml using surefire
+	//for test purposes the env variable ACT_RB_PROCESSES_PATH is as set in pom.xml using surefire
 	@Test
 	public void contextLoads() throws Exception {
 		//check variable has been resolved for path to processes
 		//first check it's not the default
 		Assert.assertNotEquals(procPath,"file:/processes/");
-		Assert.assertEquals(procPath,("file:"+System.getenv("PROCESSESPATH")));
+		Assert.assertEquals(procPath,("file:"+System.getenv("ACT_RB_PROCESSES_PATH")));
 	}
 
 }
