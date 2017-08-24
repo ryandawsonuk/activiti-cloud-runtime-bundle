@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.activiti</groupId>
+  <groupId>org.activiti.cloud</groupId>
   <artifactId>activiti-cloud-runtime-bundle</artifactId>
 
   <packaging>jar</packaging>
@@ -10,30 +10,22 @@
   <version>7-201708-EA-SNAPSHOT</version>
 
   <properties>
+    <version.activiti.cloud>${project.version}</version.activiti.cloud>
     <postgres.version>9.4.1212.jre7</postgres.version>
     <spring.boot.version>2.0.0.M3</spring.boot.version>
-    <spring.cloud.version>Finchley.BUILD-SNAPSHOT</spring.cloud.version>
-
     <junit.version>4.12</junit.version>
 
     <!-- plugins -->
     <spring-boot-maven-plugin.version>1.5.4.RELEASE</spring-boot-maven-plugin.version>
+    <docker.maven.plugin.version>0.21.0</docker.maven.plugin.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-      <!-- Spring Boot / Cloud dependencies -->
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring.cloud.version}</version>
+        <groupId>org.activiti.cloud</groupId>
+        <artifactId>activiti-cloud-dependencies</artifactId>
+        <version>${version.activiti.cloud}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -42,17 +34,14 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.activiti</groupId>
+      <groupId>org.activiti.cloud</groupId>
       <artifactId>activiti-cloud-starter-runtime-bundle</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
-
-    <!-- Test deps -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
