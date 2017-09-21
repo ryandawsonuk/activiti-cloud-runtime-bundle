@@ -7,7 +7,7 @@
 
   <packaging>jar</packaging>
   <name>Activiti Cloud :: Runtime Bundle</name>
-  <version>7-201708-EA</version>
+  <version>7-201709-EA-SNAPSHOT</version>
 
   <properties>
     <version.activiti.cloud>${project.version}</version.activiti.cloud>
@@ -211,7 +211,7 @@
     <url>https://github.com/Activiti/activiti-runtime-bundle</url>
     <connection>scm:git:https://github.com/Activiti/activiti-cloud-runtime-bundle.git</connection>
     <developerConnection>scm:git:https://github.com/Activiti/activiti-cloud-runtime-bundle.git</developerConnection>
-    <tag>activiti-7-201708-EA</tag>
+    <tag>HEAD</tag>
   </scm>
 
 </project>
