@@ -12,7 +12,7 @@
   <properties>
     <version.activiti.cloud>${project.version}</version.activiti.cloud>
     <postgres.version>9.4.1212.jre7</postgres.version>
-    <spring.boot.version>2.0.0.M3</spring.boot.version>
+    <spring.boot.version>2.0.0.M5</spring.boot.version>
     <junit.version>4.12</junit.version>
 
     <!-- plugins -->
@@ -42,6 +42,12 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${postgres.version}</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
