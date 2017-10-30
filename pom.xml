@@ -77,14 +77,38 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-maven-plugin.version}</version>
-        <configuration>
-          <layout>ZIP</layout>
-          <executable>true</executable>
-        </configuration>
         <executions>
           <execution>
             <goals>
               <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <name>rb-my-app</name>
+              <alias>rb-my-app</alias>
+              <build>
+                <from>openjdk:alpine</from>
+                <assembly>
+                  <descriptorRef>artifact</descriptorRef>
+                </assembly>
+                <cmd>java -jar maven/${project.artifactId}-${project.version}.jar</cmd>
+              </build>
+            </image>
+          </images>
+        </configuration>
+        <executions>
+          <execution>
+            <id>docker:build</id>
+            <phase>install</phase>
+            <goals>
+              <goal>build</goal>
             </goals>
           </execution>
         </executions>
@@ -103,18 +127,6 @@
           <environmentVariables>
             <ACT_RB_PROCESSES_PATH>${project.basedir}/src/test/resources/processes/</ACT_RB_PROCESSES_PATH>
           </environmentVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>${maven.release.plugin.version}</version>
-        <configuration>
-          <releaseProfiles>sign</releaseProfiles>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
-          <tagNameFormat>activiti-@{project.version}</tagNameFormat>
-          <!-- Necessary until keycloak releases boot2 adaptor -->
-          <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
         </configuration>
       </plugin>
     </plugins>
@@ -180,48 +192,5 @@
     </pluginRepository>
   </pluginRepositories>
 
-
-  <profiles>
-    <!-- Profile to sign artifacts, triggered when releasing -->
-    <profile>
-      <id>sign</id>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>${maven-gpg-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
-  <distributionManagement>
-    <repository>
-      <id>activiti-enterprise-snapshots</id>
-      <name>Alfresco internal repo</name>
-      <url>https://artifacts.alfresco.com/nexus/content/repositories/activiti-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>activiti-enterprise-snapshots</id>
-      <name>Activiti Snapshots</name>
-      <url>https://artifacts.alfresco.com/nexus/content/repositories/activiti-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
-  <scm>
-    <url>https://github.com/Activiti/activiti-runtime-bundle</url>
-    <connection>scm:git:https://github.com/Activiti/activiti-cloud-runtime-bundle.git</connection>
-    <developerConnection>scm:git:https://github.com/Activiti/activiti-cloud-runtime-bundle.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
 
 </project>
